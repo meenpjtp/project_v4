@@ -10,6 +10,8 @@
     <string name="mode_static1">สถิติโหมดจำลองการซื้อ</string>
     <string name="mode_static2">สถิติโหมดซื้อจริง</string>
     <string name="mode_calc">คำนวณ</string>
+    
+
 
     <string-array name="lotteries">
         <item>งวดวันที่ 30 ธันวาคม 2560</item>

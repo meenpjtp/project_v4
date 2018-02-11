@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button btnMode1, btnMode2, btnStatic1, btnStatic2, btnCheckLotto;
+    private Button btnMode1, btnMode2, btnStatic1, btnStatic2, btnCheckLotto1, btnCheckLotto2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +19,28 @@ public class MenuActivity extends AppCompatActivity {
         btnMode2 = (Button) findViewById(R.id.btnMode2);
         btnStatic1 = (Button) findViewById(R.id.btnStatic1);
         btnStatic2 = (Button) findViewById(R.id.btnStatic2);
-        btnCheckLotto= (Button) findViewById(R.id.btnCheckLotto);
+        btnCheckLotto1= (Button) findViewById(R.id.btnCheckLotto1);
+        btnCheckLotto2= (Button) findViewById(R.id.btnCheckLotto2);
 
-        btnCheckLotto.setOnClickListener(new View.OnClickListener() {
+
+        btnCheckLotto1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, CheckLottery1Activity.class);
-                startActivity(intent);
+                Intent c1 = new Intent(MenuActivity.this, CheckLottery1Activity.class);
+                startActivity(c1);
+            }
+        });
+
+        btnCheckLotto2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent c2 = new Intent(MenuActivity.this, CheckLottery2Activity.class);
+                startActivity(c2);
             }
         });
 
     }
+
+
+
 }

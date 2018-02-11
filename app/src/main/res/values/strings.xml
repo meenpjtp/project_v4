@@ -4,13 +4,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="mode_checklotto">ตรวจล็อตเตอรี่</string>
+    <string name="mode_checklotto1">ดูผลรางวัล</string>
+    <string name="mode_checklotto2">ตรวจล็อตเตอรี่</string>
+
     <string name="mode_1">โหมดจำลองการซื้อล็อตเตอรี่</string>
     <string name="mode_2">โหมดซื้อล็อตเตอรี่จริง</string>
     <string name="mode_static1">สถิติโหมดจำลองการซื้อ</string>
     <string name="mode_static2">สถิติโหมดซื้อจริง</string>
     <string name="mode_calc">คำนวณ</string>
-    
 
 
     <string-array name="lotteries">

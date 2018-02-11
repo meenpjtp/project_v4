@@ -72,16 +72,19 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:id="@+id/btnCheckLotto"
+                android:id="@+id/btnCheckLotto1"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/mode_checklotto" />
+                android:text="@string/mode_checklotto1" />
 
             <Button
+                android:id="@+id/btnCheckLotto2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:text="@string/mode_checklotto2"
+                />
 
         </LinearLayout>
     </LinearLayout>

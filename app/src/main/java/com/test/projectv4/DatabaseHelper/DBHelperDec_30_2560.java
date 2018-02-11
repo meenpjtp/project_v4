@@ -10,14 +10,14 @@ import com.test.projectv4.Model.LotteryModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBHelperDecember_30_2560 extends SQLiteOpenHelper{
+public class DBHelperDec_30_2560 extends SQLiteOpenHelper{
 
     public static final String DBNAME = "30_12_60.sqlite";
-    public static final String DBLOCATION = "/data/data/com.test.projectv3/databases/";
+    public static final String DBLOCATION = "/data/data/com.test.projectv4/databases/";
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
-    public DBHelperDecember_30_2560 (Context context){
+    public DBHelperDec_30_2560(Context context){
         super(context, DBNAME, null, 1);
         this.mContext = context;
     }

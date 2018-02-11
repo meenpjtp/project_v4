@@ -16,8 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CheckLottery1Activity" />
-        <activity android:name=".CheckLottery2Activity"></activity>
+        <activity android:name=".CheckLottery1Activity"
+            android:parentActivityName=".MenuActivity"/>
+        <activity android:name=".CheckLottery2Activity"/>
+
+        <activity android:name=".LotteryActivities.LotteryDec_30_2560"
+            android:parentActivityName=".CheckLottery1Activity"/>
+        <activity android:name=".LotteryActivities.LotteryDec_16_2560"
+            android:parentActivityName=".CheckLottery1Activity"/>
+        <activity android:name=".LotteryActivities.LotteryDec_1_2560"
+            android:parentActivityName=".CheckLottery1Activity">
+
+        </activity>
     </application>
 
 </manifest>

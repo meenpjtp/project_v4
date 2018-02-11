@@ -15,11 +15,11 @@ import java.util.List;
  * Created by Administrator1 on 1/2/2561.
  */
 
-public class ListAdapterDecember_30_2560 extends BaseAdapter{
+public class ListAdapterDec_30_2560 extends BaseAdapter{
     private Context mContext;
     private List<LotteryModel> lotteryModelList;
 
-    public ListAdapterDecember_30_2560(Context mContext, List<LotteryModel> lotteryModelList) {
+    public ListAdapterDec_30_2560(Context mContext, List<LotteryModel> lotteryModelList) {
         this.mContext = mContext;
         this.lotteryModelList = lotteryModelList;
     }

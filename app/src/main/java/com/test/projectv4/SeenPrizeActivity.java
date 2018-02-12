@@ -1,9 +1,12 @@
 package com.test.projectv4;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +31,10 @@ public class SeenPrizeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seen_prize);
+
+        //Back to Menu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         ArrayAdapter adapter;
         Resources res = getResources();
@@ -92,6 +99,23 @@ public class SeenPrizeActivity extends AppCompatActivity {
             throw sqle;
         }
 
+    }
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.check,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.btnCheck:
+                Intent c = new Intent(this, CheckLottery2Activity.class);
+                startActivity(c);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

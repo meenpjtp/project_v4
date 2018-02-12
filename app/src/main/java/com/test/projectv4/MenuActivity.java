@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         btnCheckLotto1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent c1 = new Intent(MenuActivity.this, CheckLottery1Activity.class);
+                Intent c1 = new Intent(MenuActivity.this, SeenPrizeActivity.class);
                 startActivity(c1);
             }
         });

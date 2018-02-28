@@ -12,10 +12,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-/**
- * Created by Administrator1 on 12/2/2561.
- */
-
 public class DBHelperSeenPrize extends SQLiteOpenHelper {
 
     private static String DB_PATH = "/data/data/com.test.projectv4/databases/";

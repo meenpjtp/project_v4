@@ -104,14 +104,14 @@ public class SeenPrizeActivity extends AppCompatActivity {
     //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.check,menu);
+        getMenuInflater().inflate(R.menu.nav_check,menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.btnCheck:
-                Intent c = new Intent(this, CheckLottery2Activity.class);
+                Intent c = new Intent(this, CheckLotteryActivity.class);
                 startActivity(c);
                 break;
         }

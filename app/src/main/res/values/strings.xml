@@ -14,6 +14,11 @@
     <string name="mode_calc">คำนวณ</string>
 
 
+    <string name="without_game">ยังไม่ได้เลือกเลขที่ต้องการจะเสี่ยง</string>
+    <string name="game_start">เลือกเลขที่ต้องการจะเสี่ยง</string>
+    <string name="select">เลือก</string>
+
+
     <string-array name="lotteries">
         <item>งวดวันที่ 30 ธันวาคม 2560</item>
         <item>งวดวันที่ 16 ธันวาคม 2560</item>

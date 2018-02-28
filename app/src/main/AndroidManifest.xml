@@ -17,17 +17,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CheckLottery1Activity" />
-        <activity android:name=".CheckLottery2Activity" />
-        <activity
-            android:name=".LotteryActivities.LotteryDec_30_2560" />
-        <activity
-            android:name=".LotteryActivities.LotteryDec_16_2560"/>
+            android:name=".CheckLotteryActivity"
+            android:parentActivityName=".SeenPrizeActivity"/>
+        <activity android:name=".LotteryActivities.LotteryDec_30_2560" />
+        <activity android:name=".LotteryActivities.LotteryDec_16_2560" />
         <activity
             android:name=".LotteryActivities.LotteryDec_1_2560"
-            android:parentActivityName=".CheckLottery1Activity"></activity>
-        <activity android:name=".SeenPrizeActivity"
-            android:parentActivityName=".MenuActivity"></activity>
+            android:parentActivityName=".CheckLottery1Activity" />
+        <activity
+            android:name=".SeenPrizeActivity"
+            android:parentActivityName=".MenuActivity" />
+        <activity android:name=".ModeSimulationPurchase.ModeSimulationPurchaseActivity" />
+        <activity android:name=".ModePurchase.ModePurchaseActivity"></activity>
     </application>
 
 </manifest>

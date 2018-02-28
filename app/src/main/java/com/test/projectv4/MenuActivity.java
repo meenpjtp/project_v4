@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.test.projectv4.ModeSimulationPurchase.ModeSimulationPurchaseActivity;
+
 public class MenuActivity extends AppCompatActivity {
 
     private Button btnMode1, btnMode2, btnStatic1, btnStatic2, btnCheckLotto1, btnCheckLotto2;
@@ -20,7 +22,6 @@ public class MenuActivity extends AppCompatActivity {
         btnStatic1 = (Button) findViewById(R.id.btnStatic1);
         btnStatic2 = (Button) findViewById(R.id.btnStatic2);
         btnCheckLotto1= (Button) findViewById(R.id.btnCheckLotto1);
-        btnCheckLotto2= (Button) findViewById(R.id.btnCheckLotto2);
 
 
         btnCheckLotto1.setOnClickListener(new View.OnClickListener() {
@@ -31,11 +32,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        btnCheckLotto2.setOnClickListener(new View.OnClickListener(){
+
+        btnMode1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent c2 = new Intent(MenuActivity.this, CheckLottery2Activity.class);
-                startActivity(c2);
+                Intent m1 = new Intent(MenuActivity.this, ModeSimulationPurchaseActivity.class);
+                startActivity(m1);
             }
         });
 

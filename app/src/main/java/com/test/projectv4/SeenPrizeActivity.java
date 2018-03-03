@@ -22,10 +22,10 @@ import java.io.IOException;
 public class SeenPrizeActivity extends AppCompatActivity {
 
     private String[] myString;
-    Spinner spinner;
-    String[] DataToDB;
-    String[] result_array;
-    String Selecteditem;
+    private Spinner spinner;
+    private String[] DataToDB;
+    private String[] result_array;
+    private String Selecteditem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

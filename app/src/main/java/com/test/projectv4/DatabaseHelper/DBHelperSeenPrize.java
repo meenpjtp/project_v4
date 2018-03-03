@@ -19,6 +19,12 @@ public class DBHelperSeenPrize extends SQLiteOpenHelper {
     private SQLiteDatabase myDataBase;
     private final Context myContext;
 
+    private static final String TABLE_LOTTERY = "Lottery";
+    private static final String COLUMN_ORDER = "order";
+    private static final String COLUMN_LOTTERY_NUM = "lottery_num";
+    private static final String COLUMN_LOTTERY_DATE = "lottery_date";
+    private static final String COLUMN_DESCRIPTION = "description";
+
     public DBHelperSeenPrize(Context context) {
 
         super(context, DB_NAME, null, 1);
@@ -49,6 +55,7 @@ public class DBHelperSeenPrize extends SQLiteOpenHelper {
     }
 
 
+    //View lottery
     public String[] ReadFromDB(String Selecteditem) {
 
         // Retrieve a string array of all our Data
@@ -71,6 +78,29 @@ public class DBHelperSeenPrize extends SQLiteOpenHelper {
         c.close();
         notes_array = (String[]) temp_array.toArray(notes_array);
         return notes_array;
+    }
+
+    //Check Lottery
+    public boolean checkLottery(String date, String number){
+        //String[] columns = {COLUMN_ORDER};
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = COLUMN_LOTTERY_DATE + " = ?" + " AND " + COLUMN_LOTTERY_NUM +" = ?";
+        String[] selectionArgs = {date, String.valueOf(Integer.parseInt(String.valueOf(number)))};
+
+        Cursor cursor = db.query(TABLE_LOTTERY,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        if(cursorCount > 0){
+            return true;
+        }
+        return false;
     }
 
 

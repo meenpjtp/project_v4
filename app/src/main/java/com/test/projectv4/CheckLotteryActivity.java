@@ -3,28 +3,38 @@ package com.test.projectv4;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
+import com.test.projectv4.Validation.InputValidation;
 
 public class CheckLotteryActivity extends AppCompatActivity  {
 
-    private Spinner spSelectLotteryDate;
-    private EditText etInputLottery;
-    private Button btnCheckLottery;
+    private AppCompatSpinner spSelectLotteryDate;
+    private AppCompatButton btnCheckLottery;
+
+    private TextInputEditText etInputLottery;
+    private TextInputLayout textInputLayout;
+
+    private LinearLayoutCompat nestedScrollView;
 
     private String[] myString;
     private String Selecteditem;
 
     private DBHelperSeenPrize databaseHelper;
+    private InputValidation inputValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +43,11 @@ public class CheckLotteryActivity extends AppCompatActivity  {
 
         initObjects();
 
-        etInputLottery = (EditText) findViewById(R.id.etInputLottery);
-        btnCheckLottery = (Button)findViewById(R.id.btnCheckLottery);
-        spSelectLotteryDate = (Spinner) findViewById(R.id.spSelectLotteryDate);
+        etInputLottery = (TextInputEditText) findViewById(R.id.etInputLottery);
+        btnCheckLottery = (AppCompatButton) findViewById(R.id.btnCheckLottery);
+        spSelectLotteryDate = (AppCompatSpinner) findViewById(R.id.spSelectLotteryDate);
+        textInputLayout = (TextInputLayout) findViewById(R.id.textInputLayout);
+        nestedScrollView = (LinearLayoutCompat) findViewById(R.id.nestedScrollView);
 
         //Spinner
         ArrayAdapter adapter;
@@ -61,10 +73,21 @@ public class CheckLotteryActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
 
+                String inputLottery = etInputLottery.getText().toString();
+                if(!inputValidation.isInputEditTextLottery(etInputLottery, textInputLayout, getString(R.string.error_message))){
+                    return;
+                }
                 if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
                         etInputLottery.getText().toString().trim())) {
-                    etInputLottery.setText("xxxxx");
+                    Snackbar.make(nestedScrollView, getString(R.string.win_lotto) , Snackbar.LENGTH_LONG).show();
+                    clear();
 
+
+                } else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CheckLotteryActivity.this);
+                    builder.setMessage(Selecteditem + " " + inputLottery + " " + "ไม่ถูกรางวัล")
+                            .create()
+                            .show();
                 }
 
             }
@@ -72,9 +95,18 @@ public class CheckLotteryActivity extends AppCompatActivity  {
 
     }
 
+    //Initialize Database
     private void initObjects(){
         databaseHelper = new DBHelperSeenPrize(this);
+        inputValidation = new InputValidation(this);
     }
+
+    public void clear(){
+        etInputLottery.setText(null);
+    }
+
+
+
 
 
 

@@ -48,6 +48,7 @@ public class SeenPrizeActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Selecteditem = spinner.getSelectedItem().toString();
+
             }
 
             @Override

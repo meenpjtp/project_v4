@@ -13,10 +13,14 @@
     <string name="mode_static2">สถิติโหมดซื้อจริง</string>
     <string name="mode_calc">คำนวณ</string>
 
-
     <string name="without_game">ยังไม่ได้เลือกเลขที่ต้องการจะเสี่ยง</string>
     <string name="game_start">เลือกเลขที่ต้องการจะเสี่ยง</string>
     <string name="select">เลือก</string>
+
+    <string name="error_message">กรุณาใส่เลข</string>
+
+    <string name="win_lotto">ยินดีด้วยคุณถูกรางวัล</string>
+
 
 
     <string-array name="lotteries">

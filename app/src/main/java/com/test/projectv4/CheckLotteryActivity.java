@@ -11,11 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -96,13 +98,26 @@ public class CheckLotteryActivity extends AppCompatActivity  {
          *         press on button, database will check lottery
          *
          */
+//        Snackbar snack = Snackbar.make(findViewById(android.R.id.content), "Had a snack at Snackbar", Snackbar.LENGTH_LONG);
+//        View v = snack.getView();
+//        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+//        params.gravity = Gravity.TOP;
+//        v.setLayoutParams(params);
+//        snack.show();
         btnCheckLottery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String inputLottery = etInputLottery.getText().toString();
                 if(!inputValidation.isInputEditTextLottery(etInputLottery, getString(R.string.error_message))){
-                    Snackbar.make(nestedScrollView, getString(R.string.error_message) , Snackbar.LENGTH_LONG).show();
+                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), "Had a snack at Snackbar", Snackbar.LENGTH_LONG);
+                    View v = snack.getView();
+                    FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+                    params.gravity=  Gravity.TOP;
+                    v.setLayoutParams(params);
+                    snack.show();
+
+
                     return;
                 }
                 if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),

@@ -110,25 +110,55 @@ public class CheckLotteryActivity extends AppCompatActivity  {
 
                 String inputLottery = etInputLottery.getText().toString();
                 if(!inputValidation.isInputEditTextLottery(etInputLottery, getString(R.string.error_message))){
-                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), "Had a snack at Snackbar", Snackbar.LENGTH_LONG);
+
+                    //Display snackbar
+                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.error_message, Snackbar.LENGTH_LONG);
                     View v = snack.getView();
                     FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
                     params.gravity=  Gravity.TOP;
                     v.setLayoutParams(params);
                     snack.show();
 
-
                     return;
                 }
                 if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
                         etInputLottery.getText().toString().trim())) {
-                    Snackbar.make(nestedScrollView, getString(R.string.win_lotto) , Snackbar.LENGTH_LONG).show();
+
+                    //Display snackbar Win!
+                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.win_lotto, Snackbar.LENGTH_LONG);
+                    View v = snack.getView();
+                    FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+                    params.gravity=  Gravity.TOP;
+                    v.setLayoutParams(params);
+                    v.setBackgroundColor(getResources().getColor(R.color.win_lotto));
+                    snack.show();
+//                    Snackbar.make(nestedScrollView, getString(R.string.win_lotto) , Snackbar.LENGTH_LONG).show();
+
+                    //Add check lottery to database and listview
+                    checks.add(new CheckLotteryHistory(ID, spSelectLotteryDate.getSelectedItem().toString()
+                            , etInputLottery.getText().toString(), getString(R.string.win_lotto)));
+
+                    dbHelperHistory.addLottery(new CheckLotteryHistory(ID, spSelectLotteryDate.getSelectedItem().toString()
+                            , etInputLottery.getText().toString(), getString(R.string.win_lotto)));
                     clear();
+                    customListView.notifyDataSetChanged();
+                    mHistoryListView.setAdapter(customListView);
 
 
                 } else{
+                    //Display snackbar Lose!
+                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.lose_lotto, Snackbar.LENGTH_LONG);
+                    View v = snack.getView();
+                    FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+                    params.gravity=  Gravity.TOP;
+                    v.setLayoutParams(params);
+                    v.setBackgroundColor(getResources().getColor(R.color.lose_lotto));
+                    snack.show();
+
+                    //Add check lottery to database and listview
                     checks.add(new CheckLotteryHistory(ID, spSelectLotteryDate.getSelectedItem().toString()
                             , etInputLottery.getText().toString(), getString(R.string.lose_lotto)));
+
                     dbHelperHistory.addLottery(new CheckLotteryHistory(ID, spSelectLotteryDate.getSelectedItem().toString()
                             , etInputLottery.getText().toString(), getString(R.string.lose_lotto)));
                     clear();
@@ -197,7 +227,7 @@ public class CheckLotteryActivity extends AppCompatActivity  {
                                 dbHelperHistory.deleteHistory(check.getId());
                             }
                             count++;
-                            Toast.makeText(getApplication(), "Deleted", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplication(), R.string.deleted, Toast.LENGTH_SHORT).show();
                             queryCheckList();
                         }
 

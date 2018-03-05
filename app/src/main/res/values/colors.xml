@@ -5,4 +5,7 @@
     <color name="colorAccent">#f9b745</color>
 
     <color name="fabCheck">#fabd52</color>
+
+    <color name="lose_lotto">#ff4144</color>
+    <color name="win_lotto">#60b13e</color>
 </resources>

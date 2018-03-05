@@ -16,8 +16,7 @@
         <Spinner
             android:layout_width="330dp"
             android:layout_height="50dp"
-            android:id="@+id/spinner"
-            android:popupBackground="@color/fabCheck">
+            android:id="@+id/spinner">
 
         </Spinner>
 

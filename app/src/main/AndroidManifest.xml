@@ -19,15 +19,12 @@
         <activity
             android:name=".CheckLotteryActivity"
             android:parentActivityName=".SeenPrizeActivity"/>
-        <activity android:name=".LotteryActivities.LotteryDec_30_2560" />
-        <activity android:name=".LotteryActivities.LotteryDec_16_2560" />
-        <activity
-            android:name=".LotteryActivities.LotteryDec_1_2560"
-            android:parentActivityName=".CheckLottery1Activity" />
         <activity
             android:name=".SeenPrizeActivity"
             android:parentActivityName=".MenuActivity" />
-        <activity android:name=".ModeSimulationPurchase.ModeSimulationPurchaseActivity" />
+        <activity
+            android:name=".ModeSimulationPurchase.ModeSimulationPurchaseActivity"
+            android:parentActivityName=".MenuActivity"/>
         <activity android:name=".ModePurchase.ModePurchaseActivity"></activity>
     </application>
 

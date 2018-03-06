@@ -24,6 +24,12 @@
     <string name="no_history">No History</string>
     <string name="deleted">ลบรายการแล้ว</string>
 
+    <string name="input_amount">กรอกจำนวนที่ต้องการซื้อ</string>
+    <string name="input_lottery_number">กรอกเลขที่ต้องการ (ตัวอย่าง.:911234)</string>
+    <string name="save">บันทึก</string>
+    <string name="input_every_fields">กรุณากรอกข้อมูลให้ครบ</string>
+
+    <string name="price_lottery">ราคา/ใบ</string>
 
 
     <string-array name="lotteries">

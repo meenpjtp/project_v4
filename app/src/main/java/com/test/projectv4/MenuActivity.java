@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.test.projectv4.ModeSimulationPurchase.ModeSimulationPurchaseActivity;
+import com.test.projectv4.ModeSimulation.ModeSimulationActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         btnMode1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent m1 = new Intent(MenuActivity.this, ModeSimulationPurchaseActivity.class);
+                Intent m1 = new Intent(MenuActivity.this, ModeSimulationActivity.class);
                 startActivity(m1);
             }
         });

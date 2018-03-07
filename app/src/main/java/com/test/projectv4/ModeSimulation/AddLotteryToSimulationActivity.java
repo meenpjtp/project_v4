@@ -13,13 +13,17 @@ import android.widget.TextView;
 import com.test.projectv4.R;
 import com.test.projectv4.Util.StringUtil;
 
+
 public class AddLotteryToSimulationActivity extends AppCompatActivity {
 
     private TextView mTextViewLotteryPrice;
+    private TextView mTextViewSelectedDateLottery;
     private Spinner mSpinnerSelectDate;
     private EditText mEditTextAddLotteryNumber;
     private EditText mEditTextAddAmountLottery;
     private Button mButtonSave;
+
+    private final int PRICE_LOTTERY = 80;
 
     private String[] myString;
     private String Selecteditem;
@@ -35,6 +39,7 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
          *
          */
         mTextViewLotteryPrice = (TextView) findViewById (R.id.textViewPriceLottery);
+        mTextViewSelectedDateLottery = (TextView) findViewById (R.id.textViewSelectedDateLottery);
         mSpinnerSelectDate = (Spinner) findViewById (R.id.spinnerSelectDate);
         mEditTextAddLotteryNumber = (EditText) findViewById (R.id.editTextAddLotteryNumber);
         mEditTextAddAmountLottery = (EditText) findViewById (R.id.editTextAddAmountLottery);
@@ -51,11 +56,14 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, myString);
         mSpinnerSelectDate.setAdapter(adapter);
+        mTextViewLotteryPrice.setText(String.valueOf(PRICE_LOTTERY));
 
         mSpinnerSelectDate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Selecteditem = mSpinnerSelectDate.getSelectedItem().toString();
+                mTextViewSelectedDateLottery.setText(Selecteditem);
+
             }
 
             @Override

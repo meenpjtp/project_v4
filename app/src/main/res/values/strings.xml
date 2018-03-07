@@ -30,6 +30,7 @@
     <string name="input_every_fields">กรุณากรอกข้อมูลให้ครบ</string>
 
     <string name="price_lottery">ราคา/ใบ</string>
+    <string name="selected_date">งวดวันที่</string>
 
 
     <string-array name="lotteries">

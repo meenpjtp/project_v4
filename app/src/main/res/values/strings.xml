@@ -31,6 +31,11 @@
 
     <string name="price_lottery">ราคา/ใบ</string>
     <string name="selected_date">งวดวันที่</string>
+    <string name="status">สถานะ</string>
+    <string name="amount">จำนวน : </string>
+    <string name="paid">จำนวนเงิน : </string>
+
+    <string name="save_complete">บันทึกข้อมูลเรียบร้อย</string>
 
 
     <string-array name="lotteries">

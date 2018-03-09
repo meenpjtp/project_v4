@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/input_lottery_number"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="6"
                 android:imeOptions="actionDone"/>
 
             <EditText
@@ -104,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/input_amount"
                 android:inputType="number"
-                android:maxLength="4"
                 android:imeOptions="actionDone"/>
 
         </LinearLayout>

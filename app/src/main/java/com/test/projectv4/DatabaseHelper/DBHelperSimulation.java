@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  *
+ *  - 1
  *  - Date : 1/12/2560
  *  - Lottery Number : 123456
  *  - Amount : 10
@@ -34,20 +35,20 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
     private static final String TABLE_NAME = "simulation";
 
     //Column Names
-    private static final String COLS_ID = "id";
-    private static final String COLS_LOTTERY_DATE = "lottery_date";
-    private static final String COLS_LOTTERY_NUMBER = "lottery_number";
-    private static final String COLS_AMOUNT = "lottery_amount";
-    private static final String COLS_PAID = "lottery_paid";
-    private static final String COLS_STATUS = "lottery_status";
+//    private static final String COLS_ID = "id";
+//    private static final String COLS_LOTTERY_DATE = "lottery_date";
+//    private static final String COLS_LOTTERY_NUMBER = "lottery_number";
+//    private static final String COLS_AMOUNT = "lottery_amount";
+//    private static final String COLS_PAID = "lottery_paid";
+//    private static final String COLS_STATUS = "lottery_status";
 
     private SQLiteDatabase sqLiteDatabase;
 
     //Create
-    private String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
-            + COLS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLS_LOTTERY_DATE + " TEXT,"
-            + COLS_LOTTERY_NUMBER + " TEXT," + COLS_AMOUNT + " INTEGER,"
-            + COLS_PAID + " INTEGER," + COLS_STATUS + " TEXT" + ")";
+//    private String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "("
+//            + COLS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLS_LOTTERY_DATE + " TEXT,"
+//            + COLS_LOTTERY_NUMBER + " TEXT," + COLS_AMOUNT + " INTEGER,"
+//            + COLS_PAID + " INTEGER," + COLS_STATUS + " TEXT" + ")";
 
     private String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
@@ -57,6 +58,12 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String CREATE_TABLE = String.format("CREATE TABLE %s " + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s INTEGER, %s INTEGER, %s TEXT)",
+                TABLE_NAME, SimulationModel.Column.ID,
+                SimulationModel.Column.LOTTERY_DATE, SimulationModel.Column.LOTTERY_NUMBER,
+                SimulationModel.Column.LOTTERY_AMOUNT, SimulationModel.Column.LOTTERY_PAID,
+                SimulationModel.Column.LOTTERY_STATUS);
+
         sqLiteDatabase.execSQL(CREATE_TABLE);
     }
 
@@ -70,11 +77,11 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLS_LOTTERY_DATE, lottery.getLottery_date());
-        values.put(COLS_LOTTERY_NUMBER, lottery.getLottery_number());
-        values.put(COLS_AMOUNT, lottery.getLottery_amount());
-        values.put(COLS_PAID, lottery.getLottery_paid());
-        values.put(COLS_STATUS, lottery.getLottery_status());
+        values.put(SimulationModel.Column.LOTTERY_DATE, lottery.getLottery_date());
+        values.put(SimulationModel.Column.LOTTERY_NUMBER, lottery.getLottery_number());
+        values.put(SimulationModel.Column.LOTTERY_AMOUNT, lottery.getLottery_amount());
+        values.put(SimulationModel.Column.LOTTERY_PAID, lottery.getLottery_paid());
+        values.put(SimulationModel.Column.LOTTERY_STATUS, lottery.getLottery_status());
 
         db.insert(TABLE_NAME, null, values);
         db.close();
@@ -102,7 +109,7 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
 
     public void deleteLottery(int id){
         sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.delete(TABLE_NAME, COLS_ID + " = " + id,null);
+        sqLiteDatabase.delete(TABLE_NAME, SimulationModel.Column.ID + " = " + id,null);
         sqLiteDatabase.close();
     }
 }

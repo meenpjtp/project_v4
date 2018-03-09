@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
+import com.test.projectv4.DatabaseHelper.DBHelperSimulation;
+import com.test.projectv4.Model.SimulationModel;
 import com.test.projectv4.R;
 import com.test.projectv4.Util.StringUtil;
 
@@ -28,6 +33,12 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
     private String[] myString;
     private String Selecteditem;
 
+    private int ID = -1;
+
+    //Database
+    private DBHelperSimulation simulationHelper;
+    private DBHelperSeenPrize seenPrizeHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +55,10 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
         mEditTextAddLotteryNumber = (EditText) findViewById (R.id.editTextAddLotteryNumber);
         mEditTextAddAmountLottery = (EditText) findViewById (R.id.editTextAddAmountLottery);
         mButtonSave = (Button) findViewById (R.id.buttonSave);
+
+        //Initialize Database
+        simulationHelper = new DBHelperSimulation(this);
+        seenPrizeHelper = new DBHelperSeenPrize(this);
 
         /**
          *
@@ -83,13 +98,43 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                 //Notification Error when empty fields.
                 if(StringUtil.isEmpty(mEditTextAddLotteryNumber.getText().toString())){
                     mEditTextAddLotteryNumber.setError(getString(R.string.input_every_fields));
-                }
 
-                if(StringUtil.isEmpty(mEditTextAddAmountLottery.getText().toString())){
+                } if(StringUtil.isEmpty(mEditTextAddAmountLottery.getText().toString())) {
                     mEditTextAddAmountLottery.setError(getString(R.string.input_every_fields));
+                }
+                // Complete every fields save to database
+                /**
+                 * Date
+                 * Number
+                 * Amount
+                 * Paid
+                 * Status
+                 */
+
+                if(seenPrizeHelper.checkLottery(mSpinnerSelectDate.getSelectedItem().toString().trim(),
+                        mEditTextAddLotteryNumber.getText().toString().trim())) {
+                    Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+
+                    //Save to database
+                    int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
+                    simulationHelper.addLottery(new SimulationModel(ID,
+                            mSpinnerSelectDate.getSelectedItem().toString(),
+                            mEditTextAddLotteryNumber.getText().toString().trim(),
+                            Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
+                            paid_lottery,
+                            getString(R.string.win_lotto)));
+                    clear();
+
                 }
             }
         });
 
+    }
+
+
+
+    private void clear(){
+        mEditTextAddAmountLottery.setText(null);
+        mEditTextAddLotteryNumber.setText(null);
     }
 }

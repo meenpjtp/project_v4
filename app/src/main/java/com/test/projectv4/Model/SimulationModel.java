@@ -1,5 +1,7 @@
 package com.test.projectv4.Model;
 
+import android.provider.BaseColumns;
+
 /**
  *
  *  - 1
@@ -27,6 +29,15 @@ public class SimulationModel {
         this.lottery_amount = lottery_amount;
         this.lottery_paid = lottery_paid;
         this.lottery_status = lottery_status;
+    }
+
+    public class Column{
+        public static final String ID = BaseColumns._ID;
+        public static final String LOTTERY_DATE = "lottery_date";
+        public static final String LOTTERY_NUMBER = "lottery_number";
+        public static final String LOTTERY_AMOUNT = "lottery_amount";
+        public static final String LOTTERY_PAID = "lottery_paid";
+        public static final String LOTTERY_STATUS = "lottery_status";
     }
 
     public int getId() {

@@ -28,6 +28,7 @@ import com.test.projectv4.CustomListView.CustomListViewHistory;
 import com.test.projectv4.DatabaseHelper.DBHelperHistory;
 import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
 import com.test.projectv4.Model.CheckLotteryHistory;
+import com.test.projectv4.Util.StringUtil;
 import com.test.projectv4.Validation.InputValidation;
 
 import java.util.ArrayList;
@@ -98,29 +99,17 @@ public class CheckLotteryActivity extends AppCompatActivity  {
          *         press on button, database will check lottery
          *
          */
-//        Snackbar snack = Snackbar.make(findViewById(android.R.id.content), "Had a snack at Snackbar", Snackbar.LENGTH_LONG);
-//        View v = snack.getView();
-//        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
-//        params.gravity = Gravity.TOP;
-//        v.setLayoutParams(params);
-//        snack.show();
+
         btnCheckLottery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String inputLottery = etInputLottery.getText().toString();
-                if(!inputValidation.isInputEditTextLottery(etInputLottery, getString(R.string.error_message))){
-
-                    //Display snackbar
-                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.error_message, Snackbar.LENGTH_LONG);
-                    View v = snack.getView();
-                    FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
-                    params.gravity=  Gravity.TOP;
-                    v.setLayoutParams(params);
-                    snack.show();
-
+                //Display Error
+                if(StringUtil.isEmpty(etInputLottery.getText().toString())){
+                    etInputLottery.setError(getString(R.string.error_message));
                     return;
                 }
+
                 if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
                         etInputLottery.getText().toString().trim())) {
 
@@ -132,7 +121,6 @@ public class CheckLotteryActivity extends AppCompatActivity  {
                     v.setLayoutParams(params);
                     v.setBackgroundColor(getResources().getColor(R.color.win_lotto));
                     snack.show();
-//                    Snackbar.make(nestedScrollView, getString(R.string.win_lotto) , Snackbar.LENGTH_LONG).show();
 
                     //Add check lottery to database and listview
                     checks.add(new CheckLotteryHistory(ID, spSelectLotteryDate.getSelectedItem().toString()

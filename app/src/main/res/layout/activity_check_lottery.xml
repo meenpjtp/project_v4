@@ -40,7 +40,8 @@
                     android:id="@+id/etInputLottery"
                     android:layout_width="230dp"
                     android:layout_height="50dp"
-                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:imeOptions="actionDone"
                     android:maxLength="6" />
 
 

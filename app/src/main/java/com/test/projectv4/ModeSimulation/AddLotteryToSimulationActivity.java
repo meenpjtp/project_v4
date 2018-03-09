@@ -1,5 +1,6 @@
 package com.test.projectv4.ModeSimulation;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +13,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.projectv4.CustomListView.CustomListViewSimulation;
 import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
 import com.test.projectv4.DatabaseHelper.DBHelperSimulation;
 import com.test.projectv4.Model.SimulationModel;
 import com.test.projectv4.R;
 import com.test.projectv4.Util.StringUtil;
+
+import java.util.ArrayList;
 
 
 public class AddLotteryToSimulationActivity extends AppCompatActivity {
@@ -32,6 +36,9 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
 
     private String[] myString;
     private String Selecteditem;
+
+    private ArrayList<SimulationModel> models;
+    private CustomListViewSimulation customListView;
 
     private int ID = -1;
 
@@ -124,6 +131,9 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                             paid_lottery,
                             getString(R.string.win_lotto)));
                     clear();
+//                    querySQL();
+                    Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
+                    startActivity(intent);
 
                 }
             }
@@ -132,6 +142,11 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
     }
 
 
+//    private void querySQL(){
+//        models = simulationHelper.getAllLotterySimulation();
+//        customListView = new CustomListViewSimulation(this,0,models);
+//        //mListViewViewSimulation.setAdapter(customListView);
+//    }
 
     private void clear(){
         mEditTextAddAmountLottery.setText(null);

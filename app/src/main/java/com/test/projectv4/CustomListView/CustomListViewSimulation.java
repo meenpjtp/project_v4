@@ -38,10 +38,10 @@ public class CustomListViewSimulation extends ArrayAdapter<SimulationModel>{
             lottery_number.setText(lottery.getLottery_number());
 
             TextView lottery_amount = convertView.findViewById(R.id.amountTextView);
-            lottery_amount.setText(lottery.getLottery_amount());
+            lottery_amount.setText(String.valueOf(lottery.getLottery_amount()));
 
             TextView lottery_paid = convertView.findViewById(R.id.paidTextView);
-            lottery_paid.setText(lottery.getLottery_paid());
+            lottery_paid.setText(String.valueOf(lottery.getLottery_paid()));
         }
         return convertView;
     }

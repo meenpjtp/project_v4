@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.test.projectv4.Model.SimulationModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -87,7 +86,7 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
         db.close();
     }
 
-    public List<SimulationModel> getAllLotterySimulation(){
+    public ArrayList<SimulationModel> getAllLotterySimulation(){
 
         String QUERY_ALL_LOTTERY = "SELECT * FROM " + TABLE_NAME;
         ArrayList<SimulationModel> lotteries = new ArrayList<>();

@@ -25,14 +25,18 @@
             android:id="@+id/imageView"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:visibility="gone"
             app:srcCompat="@drawable/icon_sad" />
 
         <TextView
+            android:id="@+id/gameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="string/without_games_registered"
             android:textAlignment="center"
+            android:visibility="gone"
             android:textStyle="bold"
+
             android:layout_marginTop="5dp"/>
 
     </LinearLayout>

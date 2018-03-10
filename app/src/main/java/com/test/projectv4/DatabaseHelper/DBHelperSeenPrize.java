@@ -85,7 +85,30 @@ public class DBHelperSeenPrize extends SQLiteOpenHelper {
         //String[] columns = {COLUMN_ORDER};
         SQLiteDatabase db = this.getReadableDatabase();
         String selection = COLUMN_LOTTERY_DATE + " = ?" + " AND " + COLUMN_LOTTERY_NUM +" = ?";
-        String[] selectionArgs = {date, String.valueOf(Integer.parseInt(String.valueOf(number)))};
+        String[] selectionArgs = {date, String.valueOf(number)};
+
+        Cursor cursor = db.query(TABLE_LOTTERY,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        if(cursorCount > 0){
+            return true;
+        }
+        return false;
+    }
+
+    //if lottery is empty
+    public boolean lotteryIsEmpty(String date){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = COLUMN_LOTTERY_DATE + " = ?";
+        String [] selectionArgs = {date};
 
         Cursor cursor = db.query(TABLE_LOTTERY,
                 null,

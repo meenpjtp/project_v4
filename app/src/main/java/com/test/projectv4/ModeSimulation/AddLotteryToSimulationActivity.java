@@ -132,12 +132,12 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                         Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
 
                         //Save to database
-                        int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
+                        //int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
                         simulationHelper.addLottery(new SimulationModel(ID,
                                 mSpinnerSelectDate.getSelectedItem().toString(),
                                 mEditTextAddLotteryNumber.getText().toString().trim(),
                                 Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
-                                paid_lottery,
+                                Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY,
                                 getString(R.string.win_lotto)));
                         clear();
                         Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
@@ -150,12 +150,12 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                     Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
 
                     //Save to database
-                    int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
+                    //int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
                     simulationHelper.addLottery(new SimulationModel(ID,
                             mSpinnerSelectDate.getSelectedItem().toString(),
                             mEditTextAddLotteryNumber.getText().toString().trim(),
                             Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
-                            paid_lottery,
+                            Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY,
                             getString(R.string.wait_lotto)));
                     clear();
                     Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
@@ -172,24 +172,19 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                         String c = getString(R.string.lose_lotto);
 
                         //Save to database
-                        int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
+                        //int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
                         simulationHelper.addLottery(new SimulationModel(ID,
                                 mSpinnerSelectDate.getSelectedItem().toString(),
                                 mEditTextAddLotteryNumber.getText().toString().trim(),
                                 Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
-                                paid_lottery,
+                                Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY,
                                 getString(R.string.lose_lotto)));
                         clear();
                         Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
                         startActivity(intent);
                     }
                 }
-
-
-
-
-
-                }
+            }
         });
 
     }

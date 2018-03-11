@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -63,15 +65,27 @@ public class ModeSimulationActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
     private void querySQL(){
         models = simulationHelper.getAllLotterySimulation();
         customListView = new CustomListViewSimulation(this,0,models);
         mListViewViewSimulation.setAdapter(customListView);
+    }
+
+    //Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.nav_stat,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_stat:
+                Intent c = new Intent(this, SimulationStaticActivity.class);
+                startActivity(c);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

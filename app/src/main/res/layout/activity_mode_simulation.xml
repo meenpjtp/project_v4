@@ -54,7 +54,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="15dp"
         app:fabSize="normal"
-        app:backgroundTint="@color/colorButton"/>
+        app:backgroundTint="@color/colorFab"/>
 
 
 

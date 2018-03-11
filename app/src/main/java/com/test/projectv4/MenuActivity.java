@@ -10,7 +10,7 @@ import com.test.projectv4.ModeSimulation.ModeSimulationActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button btnMode1, btnMode2, btnStatic1, btnStatic2, btnCheckLotto1, btnCheckLotto2;
+    private Button btnMode1, btnMode2, btnCheckLotto1, btnCheckLotto2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,6 @@ public class MenuActivity extends AppCompatActivity {
 
         btnMode1 = (Button) findViewById(R.id.btnMode1);
         btnMode2 = (Button) findViewById(R.id.btnMode2);
-        btnStatic1 = (Button) findViewById(R.id.btnStatic1);
-        btnStatic2 = (Button) findViewById(R.id.btnStatic2);
         btnCheckLotto1= (Button) findViewById(R.id.btnCheckLotto1);
 
 

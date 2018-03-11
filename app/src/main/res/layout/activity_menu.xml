@@ -44,29 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp">
-
-            <Button
-                android:id="@+id/btnStatic1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/mode_static1" />
-
-            <Button
-                android:id="@+id/btnStatic2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/mode_static2" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp">
 

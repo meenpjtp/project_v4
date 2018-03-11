@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorItem"
+            android:background="@drawable/listview_shape"
             android:gravity="center"
             android:orientation="horizontal"
             android:baselineAligned="false">
@@ -33,13 +33,15 @@
                     android:text="@string/selected_date"
                     android:textAllCaps="true"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"/>
 
                 <TextView
                     android:id="@+id/selectedDateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"/>
 
             </LinearLayout>
 
@@ -56,13 +58,15 @@
                     android:text="@string/status"
                     android:textAllCaps="true"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"/>
 
                 <TextView
                     android:id="@+id/statusTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"/>
 
             </LinearLayout>
 
@@ -72,10 +76,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorButtom"
             android:gravity="center"
             android:orientation="vertical"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:background="@drawable/listview_shape2">
 
             <TextView
                 android:id="@+id/lotteryNumberTextView"

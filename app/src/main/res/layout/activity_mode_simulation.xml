@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context="com.test.projectv4.ModeSimulation.ModeSimulationActivity">
 
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/simulationListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
 
     <LinearLayout
         android:id="@+id/linearLayoutWithoutGames"

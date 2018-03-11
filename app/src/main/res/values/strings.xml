@@ -21,7 +21,7 @@
 
     <string name="win_lotto">ถูกรางวัล</string>
     <string name="lose_lotto">ไม่ถูกรางวัล</string>
-    <string name="wait_lotto">รอผล</string>
+    <string name="wait_lotto">กำลังรอผล</string>
     <string name="no_history">No History</string>
     <string name="deleted">ลบรายการแล้ว</string>
 

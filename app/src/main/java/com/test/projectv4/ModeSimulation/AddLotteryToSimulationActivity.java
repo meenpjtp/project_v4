@@ -3,12 +3,13 @@ package com.test.projectv4.ModeSimulation;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,7 @@ import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
 import com.test.projectv4.DatabaseHelper.DBHelperSimulation;
 import com.test.projectv4.Model.SimulationModel;
 import com.test.projectv4.R;
-import com.test.projectv4.Util.StringUtil;
+import com.test.projectv4.Validation.InputValidation;
 
 import java.util.ArrayList;
 
@@ -28,9 +29,15 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
     private TextView mTextViewLotteryPrice;
     private TextView mTextViewSelectedDateLottery;
     private Spinner mSpinnerSelectDate;
-    private EditText mEditTextAddLotteryNumber;
-    private EditText mEditTextAddAmountLottery;
+//    private EditText mEditTextAddLotteryNumber;
+//    private EditText mEditTextAddAmountLottery;
     private Button mButtonSave;
+
+    private TextInputEditText mEditTextAddAmountLottery, mEditTextAddLotteryNumber;
+    private TextInputLayout textInputLayoutAddLotteryNumber,textInputLayoutAddAmountLottery;
+
+    private InputValidation inputValidation;
+
 
     private final int PRICE_LOTTERY = 80;
 
@@ -59,14 +66,18 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
         mTextViewLotteryPrice = (TextView) findViewById (R.id.textViewPriceLottery);
         mTextViewSelectedDateLottery = (TextView) findViewById (R.id.textViewSelectedDateLottery);
         mSpinnerSelectDate = (Spinner) findViewById (R.id.spinnerSelectDate);
-        mEditTextAddLotteryNumber = (EditText) findViewById (R.id.editTextAddLotteryNumber);
-        mEditTextAddAmountLottery = (EditText) findViewById (R.id.editTextAddAmountLottery);
+
+        mEditTextAddLotteryNumber = (TextInputEditText) findViewById (R.id.editTextAddLotteryNumber);
+        mEditTextAddAmountLottery = (TextInputEditText) findViewById (R.id.editTextAddAmountLottery);
+        textInputLayoutAddAmountLottery = (TextInputLayout) findViewById(R.id.textInputLayoutAddAmountLottery);
+        textInputLayoutAddLotteryNumber = (TextInputLayout) findViewById(R.id.textInputLayoutAddLotteryNumber);
         mButtonSave = (Button) findViewById (R.id.buttonSave);
 
         //Initialize Database
         simulationHelper = new DBHelperSimulation(this);
         seenPrizeHelper = new DBHelperSeenPrize(this);
 
+        inputValidation = new InputValidation(this);
         /**
          *
          * Spinner
@@ -105,11 +116,12 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                 //If fields is empty.
                 //Notification Error when empty fields.
 
-                if(StringUtil.isEmpty(mEditTextAddLotteryNumber.getText().toString())){
-                    mEditTextAddLotteryNumber.setError(getString(R.string.input_every_fields));
+                if(!inputValidation.isInputEditTextLottery(mEditTextAddLotteryNumber, textInputLayoutAddLotteryNumber, getString(R.string.input_every_fields))){
+                    return;
+                }
 
-                } if(StringUtil.isEmpty(mEditTextAddAmountLottery.getText().toString())) {
-                    mEditTextAddAmountLottery.setError(getString(R.string.input_every_fields));
+                if(!inputValidation.isInputEditTextLottery(mEditTextAddAmountLottery, textInputLayoutAddAmountLottery, getString(R.string.input_every_fields))){
+                    return;
                 }
 
 
@@ -125,6 +137,8 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
 
                 // if lottery date is not empty, this condition is working
                 // Status win lottery
+
+
                 if(seenPrizeHelper.lotteryIsEmpty(mSpinnerSelectDate.getSelectedItem().toString().trim())){
 
                     if(seenPrizeHelper.checkLottery(mSpinnerSelectDate.getSelectedItem().toString().trim(),
@@ -132,58 +146,45 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                         Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
 
                         //Save to database
-                        //int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
                         simulationHelper.addLottery(new SimulationModel(ID,
                                 mSpinnerSelectDate.getSelectedItem().toString(),
                                 mEditTextAddLotteryNumber.getText().toString().trim(),
-                                Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
-                                Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY,
+                                mEditTextAddAmountLottery.getText().toString(),
+                                String.valueOf(Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY),
                                 getString(R.string.win_lotto)));
                         clear();
                         Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
                         startActivity(intent);
-                    }
-                }
+                    } else {
 
-                // Status wait lottery
-                if(!seenPrizeHelper.lotteryIsEmpty(mSpinnerSelectDate.getSelectedItem().toString().trim())){
+                            Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+
+                            //Save to database
+                            simulationHelper.addLottery(new SimulationModel(ID,
+                                    mSpinnerSelectDate.getSelectedItem().toString(),
+                                    mEditTextAddLotteryNumber.getText().toString().trim(),
+                                    mEditTextAddAmountLottery.getText().toString(),
+                                    String.valueOf(Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY),
+                                    getString(R.string.lose_lotto)));
+                            clear();
+                            Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
+                            startActivity(intent);
+                    }
+                } else {
                     Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
 
                     //Save to database
-                    //int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
                     simulationHelper.addLottery(new SimulationModel(ID,
                             mSpinnerSelectDate.getSelectedItem().toString(),
                             mEditTextAddLotteryNumber.getText().toString().trim(),
-                            Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
-                            Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY,
+                            mEditTextAddAmountLottery.getText().toString(),
+                            String.valueOf(Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY),
                             getString(R.string.wait_lotto)));
                     clear();
                     Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
                     startActivity(intent);
                 }
 
-                // Statis Lose
-                if(seenPrizeHelper.lotteryIsEmpty(mSpinnerSelectDate.getSelectedItem().toString().trim())){
-
-                    if(!seenPrizeHelper.checkLottery(mSpinnerSelectDate.getSelectedItem().toString().trim(),
-                            mEditTextAddLotteryNumber.getText().toString().trim())) {
-                        Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
-
-                        String c = getString(R.string.lose_lotto);
-
-                        //Save to database
-                        //int paid_lottery = Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY;
-                        simulationHelper.addLottery(new SimulationModel(ID,
-                                mSpinnerSelectDate.getSelectedItem().toString(),
-                                mEditTextAddLotteryNumber.getText().toString().trim(),
-                                Integer.parseInt(mEditTextAddAmountLottery.getText().toString()),
-                                Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY,
-                                getString(R.string.lose_lotto)));
-                        clear();
-                        Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
-                        startActivity(intent);
-                    }
-                }
             }
         });
 

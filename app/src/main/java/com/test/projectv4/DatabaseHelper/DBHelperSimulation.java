@@ -57,7 +57,7 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_TABLE = String.format("CREATE TABLE %s " + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s INTEGER, %s INTEGER, %s TEXT)",
+        String CREATE_TABLE = String.format("CREATE TABLE %s " + "(%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT)",
                 TABLE_NAME, SimulationModel.Column.ID,
                 SimulationModel.Column.LOTTERY_DATE, SimulationModel.Column.LOTTERY_NUMBER,
                 SimulationModel.Column.LOTTERY_AMOUNT, SimulationModel.Column.LOTTERY_PAID,
@@ -96,8 +96,8 @@ public class DBHelperSimulation extends SQLiteOpenHelper{
         while (!cursor.isAfterLast()){
             SimulationModel lottery = new SimulationModel(
                     cursor.getInt(0), cursor.getString(1),
-                    cursor.getString(2), cursor.getInt(3),
-                    cursor.getInt(4),cursor.getString(5)
+                    cursor.getString(2), cursor.getString(3),
+                    cursor.getString(4),cursor.getString(5)
             );
             lotteries.add(lottery);
             cursor.moveToNext();

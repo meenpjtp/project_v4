@@ -24,15 +24,18 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp">
 
-            <Button
-                android:id="@+id/btnMode1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/mode_1" />
+
 
             <Button
-                android:id="@+id/btnMode2"
+                android:id="@+id/btnModeSimulation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/mode_1"
+                />
+
+            <Button
+                android:id="@+id/btnModePurchase"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="10dp"
@@ -48,7 +51,7 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:id="@+id/btnCheckLotto1"
+                android:id="@+id/btnSeenPrize"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginEnd="10dp"

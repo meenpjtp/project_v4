@@ -6,23 +6,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.test.projectv4.ModePurchase.ModePurchaseActivity;
 import com.test.projectv4.ModeSimulation.ModeSimulationActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button btnMode1, btnMode2, btnCheckLotto1, btnCheckLotto2;
+    private Button btnModeSimulation, btnModePurchase, btnSeenPrize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        btnMode1 = (Button) findViewById(R.id.btnMode1);
-        btnMode2 = (Button) findViewById(R.id.btnMode2);
-        btnCheckLotto1= (Button) findViewById(R.id.btnCheckLotto1);
+        btnModeSimulation = (Button) findViewById(R.id.btnModeSimulation);
+        btnModePurchase = (Button) findViewById(R.id.btnModePurchase);
+        btnSeenPrize = (Button) findViewById(R.id.btnSeenPrize);
 
 
-        btnCheckLotto1.setOnClickListener(new View.OnClickListener() {
+        btnSeenPrize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent c1 = new Intent(MenuActivity.this, SeenPrizeActivity.class);
@@ -30,8 +31,16 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        btnModePurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p1 = new Intent(MenuActivity.this, ModePurchaseActivity.class);
+                startActivity(p1);
+            }
+        });
 
-        btnMode1.setOnClickListener(new View.OnClickListener() {
+
+        btnModeSimulation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent m1 = new Intent(MenuActivity.this, ModeSimulationActivity.class);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.test.projectv4.ModeSimulation.AddLotteryToSimulationActivity">
+    tools:context="com.test.projectv4.ModePurchase.AddLotteryToPurchaseActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewPriceLottery"
+                    android:id="@+id/textViewPriceLotteryPurchase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp" />
@@ -60,7 +60,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewSelectedDateLottery"
+                    android:id="@+id/textViewSelectedDateLotteryPurchase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp" />
@@ -84,20 +84,20 @@
                 android:text="@string/mode_1" />
 
             <Spinner
-                android:id="@+id/spinnerSelectDate"
+                android:id="@+id/spinnerSelectDatePurchase"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
 
             </Spinner>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayoutAddLotteryNumber"
+                android:id="@+id/textInputLayoutAddLotteryNumberPurchase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextAddLotteryNumber"
+                    android:id="@+id/editTextAddLotteryNumberPurchase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/input_lottery_number"
@@ -108,13 +108,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/textInputLayoutAddAmountLottery"
+                android:id="@+id/textInputLayoutAddAmountLotteryPurchase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextAddAmountLottery"
+                    android:id="@+id/editTextAddAmountLotteryPurchase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/input_amount"
@@ -131,7 +131,7 @@
 
 
     <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/buttonSavePurchase"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"

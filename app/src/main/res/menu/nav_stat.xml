@@ -7,4 +7,5 @@
         android:title="Static"
         app:showAsAction="always"
         android:icon="@drawable/ic_stat"/>
+
 </menu>

@@ -138,8 +138,58 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                 // if lottery date is not empty, this condition is working
                 // Status win lottery
 
+                if(mEditTextAddLotteryNumber.getText().toString().length() == 6){
+                    if(seenPrizeHelper.lotteryIsEmpty(mSpinnerSelectDate.getSelectedItem().toString().trim())){
 
-                if(seenPrizeHelper.lotteryIsEmpty(mSpinnerSelectDate.getSelectedItem().toString().trim())){
+                        if(seenPrizeHelper.checkLottery(mSpinnerSelectDate.getSelectedItem().toString().trim(),
+                                mEditTextAddLotteryNumber.getText().toString().trim())) {
+                            Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+
+                            //Save to database
+                            simulationHelper.addLottery(new SimulationModel(ID,
+                                    mSpinnerSelectDate.getSelectedItem().toString(),
+                                    mEditTextAddLotteryNumber.getText().toString().trim(),
+                                    mEditTextAddAmountLottery.getText().toString(),
+                                    String.valueOf(Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY),
+                                    getString(R.string.win_lotto)));
+                            clear();
+                            Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
+                            startActivity(intent);
+                        } else {
+
+                            Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+
+                            //Save to database
+                            simulationHelper.addLottery(new SimulationModel(ID,
+                                    mSpinnerSelectDate.getSelectedItem().toString(),
+                                    mEditTextAddLotteryNumber.getText().toString().trim(),
+                                    mEditTextAddAmountLottery.getText().toString(),
+                                    String.valueOf(Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY),
+                                    getString(R.string.lose_lotto)));
+                            clear();
+                            Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
+                            startActivity(intent);
+                        }
+                    } else {
+                        Toast.makeText(AddLotteryToSimulationActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+
+                        //Save to database
+                        simulationHelper.addLottery(new SimulationModel(ID,
+                                mSpinnerSelectDate.getSelectedItem().toString(),
+                                mEditTextAddLotteryNumber.getText().toString().trim(),
+                                mEditTextAddAmountLottery.getText().toString(),
+                                String.valueOf(Integer.parseInt(mEditTextAddAmountLottery.getText().toString())*PRICE_LOTTERY),
+                                getString(R.string.wait_lotto)));
+                        clear();
+                        Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
+                        startActivity(intent);
+                    }
+                } else {
+                    Toast.makeText(AddLotteryToSimulationActivity.this, R.string.error_message_lenght_lottery, Toast.LENGTH_LONG).show();
+
+                }
+
+                /*if(seenPrizeHelper.lotteryIsEmpty(mSpinnerSelectDate.getSelectedItem().toString().trim())){
 
                     if(seenPrizeHelper.checkLottery(mSpinnerSelectDate.getSelectedItem().toString().trim(),
                             mEditTextAddLotteryNumber.getText().toString().trim())) {
@@ -183,7 +233,7 @@ public class AddLotteryToSimulationActivity extends AppCompatActivity {
                     clear();
                     Intent intent = new Intent(AddLotteryToSimulationActivity.this, ModeSimulationActivity.class);
                     startActivity(intent);
-                }
+                }*/
 
             }
         });

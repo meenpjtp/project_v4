@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class AddLotteryToPurchaseActivity extends AppCompatActivity {
     private TextInputEditText etPurchaseAddLottery;
     private TextInputEditText etPurchaseAddAmountLottery;
     private Button btPurchaseSave;
+
+    private LinearLayout modepurchase;
 
     private final int PRICE_LOTTERY = 80;
 
@@ -68,6 +71,8 @@ public class AddLotteryToPurchaseActivity extends AppCompatActivity {
         etPurchaseAddAmountLottery = (TextInputEditText) findViewById(R.id.editTextAddAmountLotteryPurchase);
         etPurchaseAddLottery = (TextInputEditText) findViewById(R.id.editTextAddLotteryNumberPurchase);
         btPurchaseSave = (Button) findViewById(R.id.buttonSavePurchase);
+
+        modepurchase = (LinearLayout) findViewById(R.id.modepurchase);
 
         purchaseHelper = new DBHelperPurchase(this);
         seenPrizeHelper = new DBHelperSeenPrize(this);
@@ -122,27 +127,42 @@ public class AddLotteryToPurchaseActivity extends AppCompatActivity {
                 }
 
 
+                if(etPurchaseAddLottery.getText().toString().length() == 6){
+                    //Input Complete
+                    if(seenPrizeHelper.lotteryIsEmpty(spPurchaseSelectDate.getSelectedItem().toString().trim())){
 
-                //Input Complete
-                if(seenPrizeHelper.lotteryIsEmpty(spPurchaseSelectDate.getSelectedItem().toString().trim())){
-
-                    if(seenPrizeHelper.checkLottery(spPurchaseSelectDate.getSelectedItem().toString().trim(),
-                            etPurchaseAddLottery.getText().toString().trim())) {
-                        Toast.makeText(AddLotteryToPurchaseActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+                        if(seenPrizeHelper.checkLottery(spPurchaseSelectDate.getSelectedItem().toString().trim(),
+                                etPurchaseAddLottery.getText().toString().trim())) {
+                            Toast.makeText(AddLotteryToPurchaseActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
 
 
-                        //Save to database
-                        purchaseHelper.addLottery(new PurchaseModel(ID,
-                                spPurchaseSelectDate.getSelectedItem().toString(),
-                                etPurchaseAddLottery.getText().toString().trim(),
-                                etPurchaseAddAmountLottery.getText().toString(),
-                                String.valueOf(Integer.parseInt(etPurchaseAddAmountLottery.getText().toString())*PRICE_LOTTERY),
-                                getString(R.string.win_lotto)));
-                        clear();
-                        Intent intent = new Intent(AddLotteryToPurchaseActivity.this, ModePurchaseActivity.class);
-                        startActivity(intent);
+                            //Save to database
+                            purchaseHelper.addLottery(new PurchaseModel(ID,
+                                    spPurchaseSelectDate.getSelectedItem().toString(),
+                                    etPurchaseAddLottery.getText().toString().trim(),
+                                    etPurchaseAddAmountLottery.getText().toString(),
+                                    String.valueOf(Integer.parseInt(etPurchaseAddAmountLottery.getText().toString())*PRICE_LOTTERY),
+                                    getString(R.string.win_lotto)));
+                            clear();
+                            Intent intent = new Intent(AddLotteryToPurchaseActivity.this, ModePurchaseActivity.class);
+                            startActivity(intent);
+                        } else {
+
+                            Toast.makeText(AddLotteryToPurchaseActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+
+
+                            //Save to database
+                            purchaseHelper.addLottery(new PurchaseModel(ID,
+                                    spPurchaseSelectDate.getSelectedItem().toString(),
+                                    etPurchaseAddLottery.getText().toString().trim(),
+                                    etPurchaseAddAmountLottery.getText().toString(),
+                                    String.valueOf(Integer.parseInt(etPurchaseAddAmountLottery.getText().toString())*PRICE_LOTTERY),
+                                    getString(R.string.lose_lotto)));
+                            clear();
+                            Intent intent = new Intent(AddLotteryToPurchaseActivity.this, ModePurchaseActivity.class);
+                            startActivity(intent);
+                        }
                     } else {
-
                         Toast.makeText(AddLotteryToPurchaseActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
 
                         //Save to database
@@ -151,24 +171,15 @@ public class AddLotteryToPurchaseActivity extends AppCompatActivity {
                                 etPurchaseAddLottery.getText().toString().trim(),
                                 etPurchaseAddAmountLottery.getText().toString(),
                                 String.valueOf(Integer.parseInt(etPurchaseAddAmountLottery.getText().toString())*PRICE_LOTTERY),
-                                getString(R.string.lose_lotto)));
+                                getString(R.string.wait_lotto)));
                         clear();
                         Intent intent = new Intent(AddLotteryToPurchaseActivity.this, ModePurchaseActivity.class);
                         startActivity(intent);
                     }
                 } else {
-                    Toast.makeText(AddLotteryToPurchaseActivity.this, R.string.save_complete, Toast.LENGTH_SHORT).show();
+                    //Snackbar.make(modepurchase, getString(R.string.error_message_lenght_lottery), Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(AddLotteryToPurchaseActivity.this, R.string.error_message_lenght_lottery, Toast.LENGTH_LONG).show();
 
-                    //Save to database
-                    purchaseHelper.addLottery(new PurchaseModel(ID,
-                            spPurchaseSelectDate.getSelectedItem().toString(),
-                            etPurchaseAddLottery.getText().toString().trim(),
-                            etPurchaseAddAmountLottery.getText().toString(),
-                            String.valueOf(Integer.parseInt(etPurchaseAddAmountLottery.getText().toString())*PRICE_LOTTERY),
-                            getString(R.string.wait_lotto)));
-                    clear();
-                    Intent intent = new Intent(AddLotteryToPurchaseActivity.this, ModePurchaseActivity.class);
-                    startActivity(intent);
                 }
 
             }

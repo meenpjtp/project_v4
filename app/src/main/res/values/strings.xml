@@ -18,6 +18,7 @@
     <string name="select">เลือก</string>
 
     <string name="error_message">กรุณากรอกเลขที่ต้องการจะตรวจ</string>
+    <string name="error_message_lenght_lottery">กรุณากรอกตัวเลขให้ครบ 6 หลัก (ตัวอย่าง.:911234)</string>
 
     <string name="win_lotto">ถูกรางวัล</string>
     <string name="lose_lotto">ไม่ถูกรางวัล</string>
@@ -37,6 +38,8 @@
     <string name="paid">จำนวนเงิน : </string>
 
     <string name="save_complete">บันทึกข้อมูลเรียบร้อย</string>
+
+
 
 
     <string-array name="lotteries">

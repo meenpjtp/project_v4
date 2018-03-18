@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.test.projectv4.DatabaseHelper.DBHelperHistory;
 import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
@@ -129,41 +130,47 @@ public class CheckLotteryActivity extends AppCompatActivity implements CheckLott
                     return;
                 }
 
-                if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
-                        etInputLottery.getText().toString().trim())) {
+                if(etInputLottery.getText().toString().length() == 6){
+                    if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
+                            etInputLottery.getText().toString().trim())) {
 
-                    //Display snackbar Win!
-                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.win_lotto, Snackbar.LENGTH_LONG);
-                    View v = snack.getView();
-                    FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
-                    params.gravity=  Gravity.TOP;
-                    v.setLayoutParams(params);
-                    v.setBackgroundColor(getResources().getColor(R.color.win_lotto));
-                    snack.show();
+                        //Display snackbar Win!
+                        Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.win_lotto, Snackbar.LENGTH_LONG);
+                        View v = snack.getView();
+                        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+                        params.gravity=  Gravity.TOP;
+                        v.setLayoutParams(params);
+                        v.setBackgroundColor(getResources().getColor(R.color.win_lotto));
+                        snack.show();
 
-                    //Add check lottery to database
-                    dbHelperHistory.addLottery(new CheckLotteryHistoryModel(ID, spSelectLotteryDate.getSelectedItem().toString()
-                            , etInputLottery.getText().toString(), getString(R.string.win_lotto)));
-                    clear();
-                    getDataFromSQLite();
+                        //Add check lottery to database
+                        dbHelperHistory.addLottery(new CheckLotteryHistoryModel(ID, spSelectLotteryDate.getSelectedItem().toString()
+                                , etInputLottery.getText().toString(), getString(R.string.win_lotto)));
+                        clear();
+                        getDataFromSQLite();
 
 
-                } else{
-                    //Display snackbar Lose!
-                    Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.lose_lotto, Snackbar.LENGTH_LONG);
-                    View v = snack.getView();
-                    FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
-                    params.gravity=  Gravity.TOP;
-                    v.setLayoutParams(params);
-                    v.setBackgroundColor(getResources().getColor(R.color.lose_lotto));
-                    snack.show();
+                    } else{
+                        //Display snackbar Lose!
+                        Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.lose_lotto, Snackbar.LENGTH_LONG);
+                        View v = snack.getView();
+                        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
+                        params.gravity=  Gravity.TOP;
+                        v.setLayoutParams(params);
+                        v.setBackgroundColor(getResources().getColor(R.color.lose_lotto));
+                        snack.show();
 
-                    //Add check lottery to database
-                    dbHelperHistory.addLottery(new CheckLotteryHistoryModel(ID, spSelectLotteryDate.getSelectedItem().toString()
-                            , etInputLottery.getText().toString(), getString(R.string.lose_lotto)));
-                    clear();
-                    getDataFromSQLite();
+                        //Add check lottery to database
+                        dbHelperHistory.addLottery(new CheckLotteryHistoryModel(ID, spSelectLotteryDate.getSelectedItem().toString()
+                                , etInputLottery.getText().toString(), getString(R.string.lose_lotto)));
+                        clear();
+                        getDataFromSQLite();
+                    }
+                } else {
+                    Toast.makeText(CheckLotteryActivity.this, R.string.error_message_lenght_lottery, Toast.LENGTH_LONG).show();
+
                 }
+
 
             }
         });

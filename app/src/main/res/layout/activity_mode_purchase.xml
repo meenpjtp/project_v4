@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/modePurchase"
     tools:context="com.test.projectv4.ModePurchase.ModePurchaseActivity">
 
-    <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:id="@+id/purchaseListView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerPurchase"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
 
-    </com.baoyz.swipemenulistview.SwipeMenuListView>
 
     <LinearLayout
         android:id="@+id/linearLayoutWithoutGames"

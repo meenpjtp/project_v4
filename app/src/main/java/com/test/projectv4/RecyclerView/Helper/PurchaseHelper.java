@@ -4,12 +4,14 @@ import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import com.test.projectv4.RecyclerView.Adapter.CheckLotteryAdapter;
 
-public class CheckLotteryHelper extends ItemTouchHelper.SimpleCallback{
-    private CheckLotteryHelperListener listener;
+import com.test.projectv4.RecyclerView.Adapter.PurchaseAdapter;
 
-    public CheckLotteryHelper(int drag, int swipe, CheckLotteryHelperListener listener){
+public class PurchaseHelper extends ItemTouchHelper.SimpleCallback{
+
+    private PurchaseHelperListener listener;
+
+    public PurchaseHelper(int drag, int swipe, PurchaseHelper.PurchaseHelperListener listener){
         super(drag, swipe);
         this.listener = listener;
     }
@@ -22,7 +24,7 @@ public class CheckLotteryHelper extends ItemTouchHelper.SimpleCallback{
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if(viewHolder != null){
-            final View foregroundView = ((CheckLotteryAdapter.MyViewHolder) viewHolder).pForeground;
+            final View foregroundView = ((PurchaseAdapter.MyViewHolder) viewHolder).pForeground;
             getDefaultUIUtil().onSelected(foregroundView);
         }
     }
@@ -31,7 +33,7 @@ public class CheckLotteryHelper extends ItemTouchHelper.SimpleCallback{
     public void onChildDrawOver(Canvas c, RecyclerView recyclerView
             , RecyclerView.ViewHolder viewHolder, float dX, float dY
             , int actionState, boolean isCurrentlyActive) {
-        final View foregroundView = ((CheckLotteryAdapter.MyViewHolder) viewHolder).pForeground;
+        final View foregroundView = ((PurchaseAdapter.MyViewHolder) viewHolder).pForeground;
         getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY,
                 actionState, isCurrentlyActive);
 
@@ -39,7 +41,7 @@ public class CheckLotteryHelper extends ItemTouchHelper.SimpleCallback{
 
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        final View foregroundView = ((CheckLotteryAdapter.MyViewHolder) viewHolder).pForeground;
+        final View foregroundView = ((PurchaseAdapter.MyViewHolder) viewHolder).pForeground;
         getDefaultUIUtil().clearView(foregroundView);
     }
 
@@ -47,7 +49,7 @@ public class CheckLotteryHelper extends ItemTouchHelper.SimpleCallback{
     public void onChildDraw(Canvas c, RecyclerView recyclerView,
                             RecyclerView.ViewHolder viewHolder, float dX, float dY,
                             int actionState, boolean isCurrentlyActive) {
-        final View foregroundView = ((CheckLotteryAdapter.MyViewHolder) viewHolder).pForeground;
+        final View foregroundView = ((PurchaseAdapter.MyViewHolder) viewHolder).pForeground;
 
         getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY,
                 actionState, isCurrentlyActive);
@@ -63,7 +65,7 @@ public class CheckLotteryHelper extends ItemTouchHelper.SimpleCallback{
         return super.convertToAbsoluteDirection(flags, layoutDirection);
     }
 
-    public interface CheckLotteryHelperListener {
+    public interface PurchaseHelperListener {
         void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position);
     }
 }

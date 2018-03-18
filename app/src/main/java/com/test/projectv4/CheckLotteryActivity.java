@@ -36,7 +36,9 @@ import java.util.ArrayList;
 
 public class CheckLotteryActivity extends AppCompatActivity implements CheckLotteryHelper.CheckLotteryHelperListener {
 
+    //Recycler View
     private static final String TAG = CheckLotteryActivity.class.getSimpleName();
+    private ArrayList<CheckLotteryHistoryModel> checkList;
     private RecyclerView rvCheckLottery;
     private CheckLotteryAdapter mAdapter;
 
@@ -56,7 +58,6 @@ public class CheckLotteryActivity extends AppCompatActivity implements CheckLott
 
     //History
     private DBHelperHistory dbHelperHistory;
-    private ArrayList<CheckLotteryHistoryModel> checkList;
     private int ID = -1;
 
     @Override

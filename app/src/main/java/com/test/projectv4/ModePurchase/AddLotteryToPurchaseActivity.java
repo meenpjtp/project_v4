@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.test.projectv4.CustomListView.CustomListViewPurchase;
 import com.test.projectv4.DatabaseHelper.DBHelperPurchase;
 import com.test.projectv4.DatabaseHelper.DBHelperSeenPrize;
 import com.test.projectv4.Model.PurchaseModel;
@@ -43,7 +42,6 @@ public class AddLotteryToPurchaseActivity extends AppCompatActivity {
     private String Selecteditem;
 
     private ArrayList<PurchaseModel> models;
-    private CustomListViewPurchase customListView;
 
     private int ID = -1;
 

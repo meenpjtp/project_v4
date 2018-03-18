@@ -19,7 +19,7 @@ public class CheckLotteryAdapter extends RecyclerView.Adapter <CheckLotteryAdapt
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView dateTextView, lotteryNumberTextView, resultTextView;
         public RelativeLayout viewBackground;
-        public LinearLayout viewForeground;
+        public LinearLayout pForeground;
 
         public MyViewHolder(View view){
             super(view);
@@ -27,7 +27,7 @@ public class CheckLotteryAdapter extends RecyclerView.Adapter <CheckLotteryAdapt
             lotteryNumberTextView = view.findViewById(R.id.lotteryNumberTextView);
             resultTextView = view.findViewById(R.id.resultTextView);
             viewBackground = view.findViewById(R.id.view_background);
-            viewForeground = view.findViewById(R.id.view_foreground);
+            pForeground = view.findViewById(R.id.view_foreground);
         }
     }
 

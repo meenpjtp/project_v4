@@ -2,46 +2,57 @@ package com.test.projectv4.ModePurchase;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.test.projectv4.CustomListView.CustomListViewPurchase;
 import com.test.projectv4.DatabaseHelper.DBHelperPurchase;
 import com.test.projectv4.Model.PurchaseModel;
 import com.test.projectv4.R;
+import com.test.projectv4.RecyclerView.Adapter.PurchaseAdapter;
+import com.test.projectv4.RecyclerView.Helper.PurchaseHelper;
 
 import java.util.ArrayList;
 
-public class ModePurchaseActivity extends AppCompatActivity {
+public class ModePurchaseActivity extends AppCompatActivity implements PurchaseHelper.PurchaseHelperListener{
 
     private FloatingActionButton mFloatingAddlotteryPurchase;
 
     private DBHelperPurchase purchaseHelper;
-    private ArrayList<PurchaseModel> models;
-    private CustomListViewPurchase customListView;
 
-    private SwipeMenuListView mSwipPurchase;
+    private RecyclerView recyclerPurchase;
+    private static final String TAG = ModePurchaseActivity.class.getSimpleName();
+    private ArrayList<PurchaseModel> purchaseList;
+    private PurchaseAdapter mAdapter;
+
+    private RelativeLayout modePurchase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_purchase);
 
-        mSwipPurchase = (SwipeMenuListView) findViewById(R.id.purchaseListView);
         mFloatingAddlotteryPurchase = (FloatingActionButton) findViewById(R.id.fabAddlotteryPurchase);
+        recyclerPurchase = (RecyclerView) findViewById(R.id.recyclerPurchase);
+        modePurchase = (RelativeLayout) findViewById(R.id.modePurchase);
 
         purchaseHelper = new DBHelperPurchase(this);
-        querySQL();
+        purchaseList = new ArrayList<>();
+        mAdapter = new PurchaseAdapter(this, purchaseList);
+        getDataFromSQLite();
+
 
         /**
          *
@@ -58,76 +69,70 @@ public class ModePurchaseActivity extends AppCompatActivity {
 
         /**
          *
-         *  ListView
+         * Recycler view
          *
          */
-        customListView = new CustomListViewPurchase(this, 0, models);
-        mSwipPurchase.setAdapter(customListView);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerPurchase.setLayoutManager(mLayoutManager);
+        recyclerPurchase.setItemAnimator(new DefaultItemAnimator());
+        recyclerPurchase.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerPurchase.setAdapter(mAdapter);
 
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "open" item
-                /*SwipeMenuItem openItem = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(170);
-                // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);*/
-
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(150);
-                // set a icon
-                deleteItem.setIcon(R.drawable.ic_delete);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-
-        mSwipPurchase.setMenuCreator(creator);
-
-        mSwipPurchase.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                switch (index){
-                    case 0:
-                        int count = 0;
-                        for(PurchaseModel model:purchaseHelper.getAllLotteryPurchase()){
-                            if(count == position){
-                                models.remove(position);
-                                purchaseHelper.deleteLottery(model.getId());
-                            }
-                            count++;
-                            Toast.makeText(getApplication(), R.string.deleted, Toast.LENGTH_SHORT).show();
-                            querySQL();
-                        }
-                        break;
-                }
-                return false;
-            }
-        });
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new PurchaseHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerPurchase);
     }
 
-    private void querySQL(){
-        models = purchaseHelper.getAllLotteryPurchase();
-        customListView = new CustomListViewPurchase(this, 0, models);
-        mSwipPurchase.setAdapter(customListView);
+    /**
+     *
+     * Recycler View
+     *
+     */
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (viewHolder instanceof PurchaseAdapter.MyViewHolder) {
+            // get the removed item name to display it in snack bar
+            String date = purchaseList.get(viewHolder.getAdapterPosition()).getLottery_date();
+
+            // backup of removed item for undo purpose
+            final PurchaseModel deletedItem = purchaseList.get(viewHolder.getAdapterPosition());
+            final int deletedIndex = viewHolder.getAdapterPosition();
+
+            // remove the item from recycler view
+            mAdapter.removeItem(viewHolder.getAdapterPosition());
+
+            // showing snack bar with Undo option
+            Snackbar snackbar = Snackbar
+                    .make(modePurchase, date + " ถูกลบแล้ว!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("ยกเลิก", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    // undo is selected, restore the deleted item
+                    mAdapter.restoreItem(deletedItem, deletedIndex);
+                }
+            });
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+        }
+    }
+
+    private void getDataFromSQLite() {
+        // AsyncTask is used that SQLite operation not blocks the UI Thread.
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                purchaseList.clear();
+                purchaseList.addAll(purchaseHelper.getAllLotteryPurchase());
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                mAdapter.notifyDataSetChanged();
+            }
+        }.execute();
     }
 
     //Menu

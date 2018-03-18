@@ -10,13 +10,13 @@ import android.provider.BaseColumns;
  *
  */
 
-public class CheckLotteryHistory {
+public class CheckLotteryHistoryModel {
     private int id;
     private String date;
     private String lotteryNumber;
     private String result;
 
-    public CheckLotteryHistory(int id, String date, String lotteryNumber, String result) {
+    public CheckLotteryHistoryModel(int id, String date, String lotteryNumber, String result) {
         this.id = id;
         this.date = date;
         this.lotteryNumber = lotteryNumber;

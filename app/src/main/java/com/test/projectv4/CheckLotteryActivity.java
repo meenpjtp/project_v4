@@ -16,13 +16,11 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.test.projectv4.DatabaseHelper.DBHelperHistory;
@@ -130,15 +128,60 @@ public class CheckLotteryActivity extends AppCompatActivity implements CheckLott
                     return;
                 }
 
-                if(etInputLottery.getText().toString().length() == 6){
+                String last2_1 = etInputLottery.getText().toString();
+                String last2_2 = last2_1.substring(4,6);
+//                Log.i("c2", last2_2);
+                if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
+                        last2_2)){
+//                    Log.i("log 2", "length 2");
+                    Toast.makeText(CheckLotteryActivity.this,
+                            "ถูก 2 ตัวท้าย",Toast.LENGTH_SHORT).show();
+
+                }
+
+                String last3_1 = etInputLottery.getText().toString();
+                String last3_2 = last3_1.substring(3,6);
+//                Log.i("gg", last3_2);
+                if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
+                        last3_2)){
+//                    Log.i("gg", "length last3");
+                    Toast.makeText(CheckLotteryActivity.this,
+                            "ถูก 3 ตัวท้าย",Toast.LENGTH_SHORT).show();
+
+
+                }
+
+                String first3_1 = etInputLottery.getText().toString();
+                String first3_2 = first3_1.substring(0,3);
+//                Log.i("gg", first3_2);
+                if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
+                        first3_2)){
+//                    Log.i("gg", "length first3");
+                    Toast.makeText(CheckLotteryActivity.this,
+                            "ถูกเลขหน้า 3 ตัว",Toast.LENGTH_SHORT).show();
+
+
+                }
+
+//                if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
+//                        etInputLottery.getText().toString().trim())) {
+//                    Log.i("log 6", "length 6");
+//
+//                }
+
+
+
+
+                /*if(etInputLottery.getText().toString().length() == 6){
+                    String c2 = etInputLottery.getText().toString().substring(4,5);
                     if(databaseHelper.checkLottery(spSelectLotteryDate.getSelectedItem().toString(),
                             etInputLottery.getText().toString().trim())) {
 
                         //Display snackbar Win!
                         Snackbar snack = Snackbar.make(findViewById(android.R.id.content), R.string.win_lotto, Snackbar.LENGTH_LONG);
                         View v = snack.getView();
-                        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)v.getLayoutParams();
-                        params.gravity=  Gravity.TOP;
+                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) v.getLayoutParams();
+                        params.gravity = Gravity.TOP;
                         v.setLayoutParams(params);
                         v.setBackgroundColor(getResources().getColor(R.color.win_lotto));
                         snack.show();
@@ -148,7 +191,7 @@ public class CheckLotteryActivity extends AppCompatActivity implements CheckLott
                                 , etInputLottery.getText().toString(), getString(R.string.win_lotto)));
                         clear();
                         getDataFromSQLite();
-
+                        Log.i("gg", "dd");
 
                     } else{
                         //Display snackbar Lose!
@@ -169,8 +212,7 @@ public class CheckLotteryActivity extends AppCompatActivity implements CheckLott
                 } else {
                     Toast.makeText(CheckLotteryActivity.this, R.string.error_message_lenght_lottery, Toast.LENGTH_LONG).show();
 
-                }
-
+                }*/
 
             }
         });

@@ -8,58 +8,41 @@
     tools:context="com.test.projectv4.MenuActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp">
-
-
-
-            <Button
-                android:id="@+id/btnModeSimulation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/mode_1"
-                />
-
-            <Button
-                android:id="@+id/btnModePurchase"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/mode_2" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+        <Button
+            android:id="@+id/btnModeSimulation"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="@string/mode_1"
+            android:background="@color/colorButton"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
+            />
 
-            <Button
-                android:id="@+id/btnSeenPrize"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/mode_checklotto1" />
+        <Button
+            android:id="@+id/btnModePurchase"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="@string/mode_2"
+            android:background="@color/colorButton"
+            android:layout_marginBottom="10dp"
+            />
 
+        <Button
+            android:id="@+id/btnSeenPrize"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:text="@string/mode_checklotto1"
+            android:background="@color/colorButton"
+            />
 
-
-        </LinearLayout>
     </LinearLayout>
+
+
+
 
 </LinearLayout>

@@ -139,6 +139,8 @@ public class ModePurchaseActivity extends AppCompatActivity implements PurchaseH
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.nav_stat,menu);
+        getMenuInflater().inflate(R.menu.nav_sumery,menu);
+
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -148,6 +150,11 @@ public class ModePurchaseActivity extends AppCompatActivity implements PurchaseH
                 Intent a = new Intent(this, PurchaseStaticActivity.class);
                 startActivity(a);
                 break;
+            case R.id.nav_summery:
+                Intent b = new Intent(this, SummeryPurchaseActivity.class);
+                startActivity(b);
+                break;
+
 
         }
         return super.onOptionsItemSelected(item);

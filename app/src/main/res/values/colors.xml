@@ -6,6 +6,8 @@
     <color name="colorFab">#FF5252</color>
     <color name="colorBackground">#f4f1f1</color>
 
+    <color name="colorButton">#9be69b</color>
+
 
     <color name="lose_lotto">#ff4144</color>
     <color name="win_lotto">#60b13e</color>

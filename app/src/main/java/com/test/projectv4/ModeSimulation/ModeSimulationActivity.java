@@ -143,6 +143,7 @@ public class ModeSimulationActivity extends AppCompatActivity implements Simulat
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.nav_stat,menu);
+        getMenuInflater().inflate(R.menu.nav_sumery,menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -151,6 +152,10 @@ public class ModeSimulationActivity extends AppCompatActivity implements Simulat
             case R.id.nav_stat:
                 Intent a = new Intent(this, SimulationStaticActivity.class);
                 startActivity(a);
+                break;
+            case R.id.nav_summery:
+                Intent b = new Intent(this, SummerySimulationActivity.class);
+                startActivity(b);
                 break;
 
         }

@@ -27,14 +27,15 @@
             android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".ModePurchase.ModePurchaseActivity"
-            android:parentActivityName=".MenuActivity"/>
+            android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".ModeSimulation.AddLotteryToSimulationActivity"
             android:parentActivityName=".ModeSimulation.AddLotteryToSimulationActivity" />
-
         <activity android:name=".ModeSimulation.SimulationStaticActivity" />
         <activity android:name=".ModePurchase.AddLotteryToPurchaseActivity" />
-        <activity android:name=".ModePurchase.PurchaseStaticActivity"></activity>
+        <activity android:name=".ModePurchase.PurchaseStaticActivity" />
+        <activity android:name=".ModePurchase.SummeryPurchaseActivity" />
+        <activity android:name=".ModeSimulation.SummerySimulationActivity"></activity>
     </application>
 
 </manifest>
